@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <title>Web Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link href="style.css" rel="stylesheet">   
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="jquery-3.3.1.min.js"></script>  
+        <script type="text/javascript" ></script>
+        <script>       
+        function ajax_getjson(){
+                var person=new XMLHttpRequest();
+                person.open("GET","apiperson.json",true);
+                person.onreadystatechange=function(){
+                    if(person.readyState === 4 && person.status === 200){
+                        var data=JSON.parse(person.responseText);                        
+                        var result = document.getElementById("sun");
+                        result.innerHTML="";                      
+                        for(var obj in data){      
+                            result.innerHTML+=data[obj].name+'<br>';                      
+                            var d = new Date(data[obj].birthday.mdy).getDay();
+                            var nameDay = Showday(d);    
+                        }          
+                    }
+                }
+                person.send(null);
+                document.getElementById("result"),innerHTML="ReQuest.........";
+                }
+             function Showday(convertday){                        
+                if(convertday == 0){
+                    return "sun"; 
+                }else if (convertday == 1) {
+                    return "mon";    
+                }else if (convertday == 2) {
+                    return "tue";   
+                }else if (convertday == 3) {
+                    return "wed";       
+                }else if (convertday == 4) {
+                    return "thu";       
+                }else if (convertday == 5) {
+                    return "fri";       
+                }else if (convertday == 6) {
+                    return "sat";       
+                }                     
+            }                                               
+        </script>
+    </head>
+    <body>      
+        <script>ajax_getjson()</script>   
+             <div id="container">
+                    <div class="row">
+                            <div class="col-sm">
+                            <strong>SUN</strong>
+                                <div id="sun">
+
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                            <strong>MON</strong>
+                                <div id="mon">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                            <strong>TUE</strong>
+                                <div id="tue">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                            <strong>WED</strong>
+                                <div id="wed">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                            <strong>THU</strong>
+                                <div id="thu">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                            <strong>FRI</strong>
+                                <div id="fri">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                            <strong>SAT</strong>
+                                <div id="sat">
+                                    
+                                </div>
+                            </div>
+                    </div>
+            </div>
+    </body>
+</html>
+
+           
